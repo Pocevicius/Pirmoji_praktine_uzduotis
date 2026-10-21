@@ -40,6 +40,7 @@ int main() {
         int valiutosPasirinkimas;
         double bendrasKursas;
         double pirkimoKursas;
+        double pardavimoKursas;
          cout << endl << "Pasirinkite valiuta:" << endl;
          cout << "1. GBP" << endl;
          cout << "2. USD" << endl;
@@ -50,20 +51,45 @@ int main() {
         if (valiutosPasirinkimas == 1) {
             bendrasKursas = GBP_Bendras;
             pirkimoKursas = GBP_Pirkti;
+            pardavimoKursas = GBP_Parduoti;
             cout << "Pasirinkote GBP." << endl;
         } else if (valiutosPasirinkimas == 2) {
             bendrasKursas = USD_Bendras;
             pirkimoKursas = USD_Pirkti;
+            pardavimoKursas = USD_Parduoti;
             cout << "Pasirinkote USD." << endl;
         } else if (valiutosPasirinkimas == 3) {
             bendrasKursas = INR_Bendras;
             pirkimoKursas = INR_Pirkti;
+            pardavimoKursas = INR_Parduoti;
             cout << "Pasirinkote INR." << endl;
         } else {
             cout << "Neteisingas valiutos pasirinkimas." << endl;
         }
         if (pasirinkimas == 1 && valiutosPasirinkimas >= 1 && valiutosPasirinkimas <= 3) {
             cout << "Kursas: 1 EUR = " << bendrasKursas << endl;
+        }
+        if (pasirinkimas == 3 && valiutosPasirinkimas >= 1 && valiutosPasirinkimas <= 3) {
+            double sumaValiuta;
+            cout << "Kiek valiutos norite parduoti?";
+            cin >> sumaValiuta;
+            if (sumaValiuta <= 0) {
+                cout << "Suma turi buti didesne uz nuli." << endl;
+            }
+            else {
+                double gautaEur = sumaValiuta / pardavimoKursas;
+                cout << fixed << setprecision(2);
+                cout << sumaValiuta << "";
+                if (valiutosPasirinkimas == 1) {
+                    cout  << " GBP" << endl;
+                }else if (valiutosPasirinkimas == 2) {
+                    cout << " USD" << endl;
+                }else if (valiutosPasirinkimas == 3) {
+                    cout << " INR" << endl;
+                }
+                cout <<"->" << gautaEur << " EUR" << endl;
+            }
+
         }
         if (pasirinkimas == 2 && valiutosPasirinkimas >= 1 && valiutosPasirinkimas <= 3) {
 
