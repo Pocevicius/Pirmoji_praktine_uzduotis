@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 const double GBP_Bendras   = 0.8729;
@@ -38,6 +39,7 @@ int main() {
     if (pasirinkimas == 1 || pasirinkimas == 2 || pasirinkimas == 3) {
         int valiutosPasirinkimas;
         double bendrasKursas;
+        double pirkimoKursas;
          cout << endl << "Pasirinkite valiuta:" << endl;
          cout << "1. GBP" << endl;
          cout << "2. USD" << endl;
@@ -47,12 +49,15 @@ int main() {
 
         if (valiutosPasirinkimas == 1) {
             bendrasKursas = GBP_Bendras;
+            pirkimoKursas = GBP_Pirkti;
             cout << "Pasirinkote GBP." << endl;
         } else if (valiutosPasirinkimas == 2) {
             bendrasKursas = USD_Bendras;
+            pirkimoKursas = USD_Pirkti;
             cout << "Pasirinkote USD." << endl;
         } else if (valiutosPasirinkimas == 3) {
             bendrasKursas = INR_Bendras;
+            pirkimoKursas = INR_Pirkti;
             cout << "Pasirinkote INR." << endl;
         } else {
             cout << "Neteisingas valiutos pasirinkimas." << endl;
@@ -60,6 +65,29 @@ int main() {
         if (pasirinkimas == 1 && valiutosPasirinkimas >= 1 && valiutosPasirinkimas <= 3) {
             cout << "Kursas: 1 EUR = " << bendrasKursas << endl;
         }
+        if (pasirinkimas == 2 && valiutosPasirinkimas >= 1 && valiutosPasirinkimas <= 3) {
+
+            double sumaEur;
+            cout << "Kiek EUR norite isleisti? ";
+            cin >> sumaEur;
+
+            if (sumaEur <= 0) {
+                cout << "Suma turi buti didesne uz nuli." << endl;
+            } else {
+                double gautaValiuta = sumaEur * pirkimoKursas;
+
+                cout << fixed << setprecision(2);
+                cout << sumaEur << " EUR -> ";
+
+                if (valiutosPasirinkimas == 1) {
+                    cout << gautaValiuta << " GBP" << endl;
+                } else if (valiutosPasirinkimas == 2) {
+                    cout << gautaValiuta << " USD" << endl;
+                } else {
+                    cout << gautaValiuta << " INR" << endl;
+                }
+            }
+    }
     }
     return 0;
 }
